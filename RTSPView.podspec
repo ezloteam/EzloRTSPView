@@ -38,6 +38,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.license      = "MIT"
+  spec.static_framework = true
   # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -78,7 +79,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/ezlo-maxv/RTSPView.git", :tag => "0.1.3" }
+  spec.source       = { :git => "https://github.com/ezlo-maxv/RTSPView.git" } #, :tag => "0.1.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
