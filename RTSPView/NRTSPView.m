@@ -20,20 +20,20 @@
 
 - (void)startStream:(NSString*) stringURL
 {
-    _mediaPlayer = nil;
-    
-    NSURL* url = [[NSURL alloc] initWithString:stringURL];
-    VLCMedia* media = [[VLCMedia alloc] initWithURL:url];
-    
-    _mediaPlayer = [[VLCMediaPlayer alloc] init];
-    _mediaPlayer.media = media;
-    _mediaPlayer.drawable = self;
-    [_mediaPlayer play];
+//    _mediaPlayer = nil;
+//    
+//    NSURL* url = [[NSURL alloc] initWithString:stringURL];
+//    VLCMedia* media = [[VLCMedia alloc] initWithURL:url];
+//    
+//    _mediaPlayer = [[VLCMediaPlayer alloc] init];
+//    _mediaPlayer.media = media;
+//    _mediaPlayer.drawable = self;
+//    [_mediaPlayer play];
 }
 
 - (void)stopStream
 {
-    [_mediaPlayer stop];
+//    [_mediaPlayer stop];
 }
 
 

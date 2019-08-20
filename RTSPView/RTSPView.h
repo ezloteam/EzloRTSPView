@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MobileVLCKit/MobileVLCKit.h>
 
 //! Project version number for RTSPView.
 FOUNDATION_EXPORT double RTSPViewVersionNumber;

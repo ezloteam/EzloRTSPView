@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MobileVLCKit/MobileVLCKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NRTSPView : UIView
-@property (nonatomic, strong) VLCMediaPlayer* mediaPlayer;
+//@property (nonatomic, strong) VLCMediaPlayer* mediaPlayer;
 
 - (void)startStream:(NSString*) stringURL;
 - (void)stopStream;

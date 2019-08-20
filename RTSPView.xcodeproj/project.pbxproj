@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920E7B29230BEE8F00E57B2F /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B28230BEE8F00E57B2F /* AVKit.framework */; };
+		920E7B2B230BEE9700E57B2F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B2A230BEE9700E57B2F /* CoreMedia.framework */; };
+		920E7B2D230BEEA600E57B2F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B2C230BEEA600E57B2F /* OpenGLES.framework */; };
+		920E7B2F230BEEAB00E57B2F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B2E230BEEAB00E57B2F /* QuartzCore.framework */; };
+		920E7B31230BEEB400E57B2F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B30230BEEB400E57B2F /* CoreAudio.framework */; };
+		920E7B33230BEEBC00E57B2F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B32230BEEBB00E57B2F /* MediaPlayer.framework */; };
+		920E7B35230BEECC00E57B2F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B34230BEECC00E57B2F /* Accelerate.framework */; };
+		920E7B37230BEF3C00E57B2F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B36230BEF3A00E57B2F /* AVFoundation.framework */; };
+		920E7B44230BEF6900E57B2F /* KxMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B39230BEF6900E57B2F /* KxMovieViewController.m */; };
+		920E7B45230BEF6900E57B2F /* KxMovieDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B3A230BEF6900E57B2F /* KxMovieDecoder.h */; };
+		920E7B46230BEF6900E57B2F /* KxMovieGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B3B230BEF6900E57B2F /* KxMovieGLView.m */; };
+		920E7B47230BEF6900E57B2F /* KxLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B3C230BEF6900E57B2F /* KxLogger.h */; };
+		920E7B48230BEF6900E57B2F /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 920E7B3D230BEF6900E57B2F /* kxmovie.bundle */; };
+		920E7B49230BEF6900E57B2F /* KxAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B3E230BEF6900E57B2F /* KxAudioManager.m */; };
+		920E7B4A230BEF6900E57B2F /* kxmovie-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B3F230BEF6900E57B2F /* kxmovie-Prefix.pch */; };
+		920E7B4B230BEF6900E57B2F /* KxMovieViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B40230BEF6900E57B2F /* KxMovieViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		920E7B4C230BEF6900E57B2F /* KxMovieGLView.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B41230BEF6900E57B2F /* KxMovieGLView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		920E7B4D230BEF6900E57B2F /* KxMovieDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B42230BEF6900E57B2F /* KxMovieDecoder.m */; };
+		920E7B4E230BEF6900E57B2F /* KxAudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B43230BEF6900E57B2F /* KxAudioManager.h */; };
+		920E7B50230BEF7D00E57B2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B4F230BEF7C00E57B2F /* UIKit.framework */; };
 		92830F55230AE42000313740 /* RTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92830F53230AE42000313740 /* RTSPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92830F5F230AE5A800313740 /* NRTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92830F5D230AE5A800313740 /* NRTSPView.h */; };
 		92830F60230AE5A800313740 /* NRTSPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92830F5E230AE5A800313740 /* NRTSPView.m */; };
@@ -15,6 +35,26 @@
 
 /* Begin PBXFileReference section */
 		36FB8E81F52655F212873257 /* Pods-RTSPView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTSPView.debug.xcconfig"; path = "Target Support Files/Pods-RTSPView/Pods-RTSPView.debug.xcconfig"; sourceTree = "<group>"; };
+		920E7B28230BEE8F00E57B2F /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		920E7B2A230BEE9700E57B2F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		920E7B2C230BEEA600E57B2F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		920E7B2E230BEEAB00E57B2F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		920E7B30230BEEB400E57B2F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		920E7B32230BEEBB00E57B2F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		920E7B34230BEECC00E57B2F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		920E7B36230BEF3A00E57B2F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		920E7B39230BEF6900E57B2F /* KxMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMovieViewController.m; sourceTree = "<group>"; };
+		920E7B3A230BEF6900E57B2F /* KxMovieDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMovieDecoder.h; sourceTree = "<group>"; };
+		920E7B3B230BEF6900E57B2F /* KxMovieGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMovieGLView.m; sourceTree = "<group>"; };
+		920E7B3C230BEF6900E57B2F /* KxLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxLogger.h; sourceTree = "<group>"; };
+		920E7B3D230BEF6900E57B2F /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = kxmovie.bundle; sourceTree = "<group>"; };
+		920E7B3E230BEF6900E57B2F /* KxAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxAudioManager.m; sourceTree = "<group>"; };
+		920E7B3F230BEF6900E57B2F /* kxmovie-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "kxmovie-Prefix.pch"; sourceTree = "<group>"; };
+		920E7B40230BEF6900E57B2F /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMovieViewController.h; sourceTree = "<group>"; };
+		920E7B41230BEF6900E57B2F /* KxMovieGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMovieGLView.h; sourceTree = "<group>"; };
+		920E7B42230BEF6900E57B2F /* KxMovieDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMovieDecoder.m; sourceTree = "<group>"; };
+		920E7B43230BEF6900E57B2F /* KxAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxAudioManager.h; sourceTree = "<group>"; };
+		920E7B4F230BEF7C00E57B2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		92830F50230AE42000313740 /* RTSPView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RTSPView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92830F53230AE42000313740 /* RTSPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSPView.h; sourceTree = "<group>"; };
 		92830F54230AE42000313740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,6 +69,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920E7B50230BEF7D00E57B2F /* UIKit.framework in Frameworks */,
+				920E7B37230BEF3C00E57B2F /* AVFoundation.framework in Frameworks */,
+				920E7B35230BEECC00E57B2F /* Accelerate.framework in Frameworks */,
+				920E7B33230BEEBC00E57B2F /* MediaPlayer.framework in Frameworks */,
+				920E7B31230BEEB400E57B2F /* CoreAudio.framework in Frameworks */,
+				920E7B2F230BEEAB00E57B2F /* QuartzCore.framework in Frameworks */,
+				920E7B2D230BEEA600E57B2F /* OpenGLES.framework in Frameworks */,
+				920E7B2B230BEE9700E57B2F /* CoreMedia.framework in Frameworks */,
+				920E7B29230BEE8F00E57B2F /* AVKit.framework in Frameworks */,
 				DEBF291FDD73D9FB955E683A /* Pods_RTSPView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,6 +88,15 @@
 		4591688EFE02AF8F06833740 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				920E7B4F230BEF7C00E57B2F /* UIKit.framework */,
+				920E7B36230BEF3A00E57B2F /* AVFoundation.framework */,
+				920E7B34230BEECC00E57B2F /* Accelerate.framework */,
+				920E7B32230BEEBB00E57B2F /* MediaPlayer.framework */,
+				920E7B30230BEEB400E57B2F /* CoreAudio.framework */,
+				920E7B2E230BEEAB00E57B2F /* QuartzCore.framework */,
+				920E7B2C230BEEA600E57B2F /* OpenGLES.framework */,
+				920E7B2A230BEE9700E57B2F /* CoreMedia.framework */,
+				920E7B28230BEE8F00E57B2F /* AVKit.framework */,
 				BF5798DD58D9A513D1F21369 /* Pods_RTSPView.framework */,
 			);
 			name = Frameworks;
@@ -51,6 +109,24 @@
 				FFAAD2EC8EF06658E51A73FC /* Pods-RTSPView.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		920E7B38230BEF6900E57B2F /* kxmovie */ = {
+			isa = PBXGroup;
+			children = (
+				920E7B39230BEF6900E57B2F /* KxMovieViewController.m */,
+				920E7B3A230BEF6900E57B2F /* KxMovieDecoder.h */,
+				920E7B3B230BEF6900E57B2F /* KxMovieGLView.m */,
+				920E7B3C230BEF6900E57B2F /* KxLogger.h */,
+				920E7B3D230BEF6900E57B2F /* kxmovie.bundle */,
+				920E7B3E230BEF6900E57B2F /* KxAudioManager.m */,
+				920E7B3F230BEF6900E57B2F /* kxmovie-Prefix.pch */,
+				920E7B40230BEF6900E57B2F /* KxMovieViewController.h */,
+				920E7B41230BEF6900E57B2F /* KxMovieGLView.h */,
+				920E7B42230BEF6900E57B2F /* KxMovieDecoder.m */,
+				920E7B43230BEF6900E57B2F /* KxAudioManager.h */,
+			);
+			path = kxmovie;
 			sourceTree = "<group>";
 		};
 		92830F46230AE42000313740 = {
@@ -74,6 +150,7 @@
 		92830F52230AE42000313740 /* RTSPView */ = {
 			isa = PBXGroup;
 			children = (
+				920E7B38230BEF6900E57B2F /* kxmovie */,
 				92830F53230AE42000313740 /* RTSPView.h */,
 				92830F54230AE42000313740 /* Info.plist */,
 				92830F5D230AE5A800313740 /* NRTSPView.h */,
@@ -89,8 +166,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920E7B45230BEF6900E57B2F /* KxMovieDecoder.h in Headers */,
+				920E7B4C230BEF6900E57B2F /* KxMovieGLView.h in Headers */,
 				92830F55230AE42000313740 /* RTSPView.h in Headers */,
+				920E7B4A230BEF6900E57B2F /* kxmovie-Prefix.pch in Headers */,
+				920E7B4B230BEF6900E57B2F /* KxMovieViewController.h in Headers */,
 				92830F5F230AE5A800313740 /* NRTSPView.h in Headers */,
+				920E7B4E230BEF6900E57B2F /* KxAudioManager.h in Headers */,
+				920E7B47230BEF6900E57B2F /* KxLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +205,7 @@
 		92830F47230AE42000313740 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = eZLO;
 				TargetAttributes = {
@@ -136,6 +220,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92830F46230AE42000313740;
 			productRefGroup = 92830F51230AE42000313740 /* Products */;
@@ -152,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920E7B48230BEF6900E57B2F /* kxmovie.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920E7B4D230BEF6900E57B2F /* KxMovieDecoder.m in Sources */,
+				920E7B44230BEF6900E57B2F /* KxMovieViewController.m in Sources */,
 				92830F60230AE5A800313740 /* NRTSPView.m in Sources */,
+				920E7B46230BEF6900E57B2F /* KxMovieGLView.m in Sources */,
+				920E7B49230BEF6900E57B2F /* KxAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +415,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = RTSPView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -350,6 +441,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = RTSPView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
