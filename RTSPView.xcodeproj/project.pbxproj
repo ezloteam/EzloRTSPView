@@ -27,6 +27,8 @@
 		920E7B4D230BEF6900E57B2F /* KxMovieDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B42230BEF6900E57B2F /* KxMovieDecoder.m */; };
 		920E7B4E230BEF6900E57B2F /* KxAudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B43230BEF6900E57B2F /* KxAudioManager.h */; };
 		920E7B50230BEF7D00E57B2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 920E7B4F230BEF7C00E57B2F /* UIKit.framework */; };
+		920E7B53230C065A00E57B2F /* EzloRTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B51230C065A00E57B2F /* EzloRTSPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		920E7B54230C065A00E57B2F /* EzloRTSPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B52230C065A00E57B2F /* EzloRTSPView.m */; };
 		92830F55230AE42000313740 /* RTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92830F53230AE42000313740 /* RTSPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92830F5F230AE5A800313740 /* NRTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92830F5D230AE5A800313740 /* NRTSPView.h */; };
 		92830F60230AE5A800313740 /* NRTSPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92830F5E230AE5A800313740 /* NRTSPView.m */; };
@@ -55,6 +57,8 @@
 		920E7B42230BEF6900E57B2F /* KxMovieDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMovieDecoder.m; sourceTree = "<group>"; };
 		920E7B43230BEF6900E57B2F /* KxAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxAudioManager.h; sourceTree = "<group>"; };
 		920E7B4F230BEF7C00E57B2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		920E7B51230C065A00E57B2F /* EzloRTSPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EzloRTSPView.h; sourceTree = "<group>"; };
+		920E7B52230C065A00E57B2F /* EzloRTSPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EzloRTSPView.m; sourceTree = "<group>"; };
 		92830F50230AE42000313740 /* RTSPView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RTSPView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92830F53230AE42000313740 /* RTSPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSPView.h; sourceTree = "<group>"; };
 		92830F54230AE42000313740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				920E7B41230BEF6900E57B2F /* KxMovieGLView.h */,
 				920E7B42230BEF6900E57B2F /* KxMovieDecoder.m */,
 				920E7B43230BEF6900E57B2F /* KxAudioManager.h */,
+				920E7B51230C065A00E57B2F /* EzloRTSPView.h */,
+				920E7B52230C065A00E57B2F /* EzloRTSPView.m */,
 			);
 			path = kxmovie;
 			sourceTree = "<group>";
@@ -168,6 +174,7 @@
 			files = (
 				920E7B45230BEF6900E57B2F /* KxMovieDecoder.h in Headers */,
 				920E7B4C230BEF6900E57B2F /* KxMovieGLView.h in Headers */,
+				920E7B53230C065A00E57B2F /* EzloRTSPView.h in Headers */,
 				92830F55230AE42000313740 /* RTSPView.h in Headers */,
 				920E7B4A230BEF6900E57B2F /* kxmovie-Prefix.pch in Headers */,
 				920E7B4B230BEF6900E57B2F /* KxMovieViewController.h in Headers */,
@@ -276,6 +283,7 @@
 				920E7B4D230BEF6900E57B2F /* KxMovieDecoder.m in Sources */,
 				920E7B44230BEF6900E57B2F /* KxMovieViewController.m in Sources */,
 				92830F60230AE5A800313740 /* NRTSPView.m in Sources */,
+				920E7B54230C065A00E57B2F /* EzloRTSPView.m in Sources */,
 				920E7B46230BEF6900E57B2F /* KxMovieGLView.m in Sources */,
 				920E7B49230BEF6900E57B2F /* KxAudioManager.m in Sources */,
 			);
