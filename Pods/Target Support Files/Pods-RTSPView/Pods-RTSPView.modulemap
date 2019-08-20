@@ -1,0 +1,6 @@
+framework module Pods_RTSPView {
+  umbrella header "Pods-RTSPView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,30 @@
+PODS:
+  - FFmpeg (2.8.3):
+    - FFmpeg/precompiled (= 2.8.3)
+  - FFmpeg/precompiled (2.8.3)
+  - RTSPView (0.1.4):
+    - FFmpeg
+
+DEPENDENCIES:
+  - RTSPView (from `https://github.com/ezlo-maxv/RTSPView.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FFmpeg
+
+EXTERNAL SOURCES:
+  RTSPView:
+    :git: https://github.com/ezlo-maxv/RTSPView.git
+
+CHECKOUT OPTIONS:
+  RTSPView:
+    :commit: 8c35357c613903689510d2093e5091cd8de7b99a
+    :git: https://github.com/ezlo-maxv/RTSPView.git
+
+SPEC CHECKSUMS:
+  FFmpeg: f1428c3b60b5f9e349fcd5d7878705cd7f9a26f6
+  RTSPView: 695760f7e465df3a2e4b44d1cd8c81f40ac798f5
+
+PODFILE CHECKSUM: cf1656c6ab05f150a707c6024cc9add470088c3f
+
+COCOAPODS: 1.7.5

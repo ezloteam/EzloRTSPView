@@ -1,0 +1,27 @@
+{
+  "name": "RTSPView",
+  "version": "0.1.4",
+  "summary": "A short description of RTSPView.",
+  "description": "RTSP View based on MobileVLCKit",
+  "homepage": "https://github.com/MaxVitruk",
+  "license": "MIT",
+  "static_framework": true,
+  "authors": {
+    "Max Vitruk": "maxvitruk@gmail.com"
+  },
+  "platforms": {
+    "ios": null
+  },
+  "source": {
+    "git": "https://github.com/ezlo-maxv/RTSPView.git"
+  },
+  "source_files": [
+    "RTSPView",
+    "RTSPView/**/*.{h,m}"
+  ],
+  "dependencies": {
+    "FFmpeg": [
+
+    ]
+  }
+}
