@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "RTSPView"
-  spec.version      = "0.1.5"
+  spec.version      = "0.1.6"
   spec.summary      = "A short description of RTSPView."
 
   # This description is used to generate tags and improve search results.

@@ -88,8 +88,6 @@ static NSMutableDictionary * gHistory;
     KxMovieGLView       *_glView;
     UIImageView         *_imageView;
     
-    UILabel             *_progressLabel;
-    UILabel             *_leftLabel;
     UIActivityIndicatorView *_activityIndicatorView;
     UILabel             *_subtitlesLabel;
     
@@ -129,20 +127,21 @@ static NSMutableDictionary * gHistory;
 
 - (BOOL)prefersStatusBarHidden { return YES; }
 
-+ (id) movieViewControllerWithContentPath: (NSString *) path
-                               parameters: (NSDictionary *) parameters
++ (EzloRTSPView*) initWithContentPath: (NSString *) path
+                           parameters: (NSDictionary *) parameters
+                               frame : (CGRect) frame
 {
     id<KxAudioManager> audioManager = [KxAudioManager audioManager];
     [audioManager activateAudioSession];
-    return [[EzloRTSPView alloc] initWithContentPath: path parameters: parameters];
+    return [[EzloRTSPView alloc] initWithContentPath: path parameters: parameters frame: frame];
 }
 
 - (id) initWithContentPath: (NSString *) path
                 parameters: (NSDictionary *) parameters
+                    frame : (CGRect) frame
 {
     NSAssert(path.length > 0, @"empty path");
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    self = [super initWithFrame: bounds];
+    self = [super initWithFrame: frame];
     if (self) {
         
         _moviePosition = 0;
@@ -180,7 +179,7 @@ static NSMutableDictionary * gHistory;
 
 - (void) dealloc
 {
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     if (_dispatchQueue) {
@@ -211,20 +210,22 @@ static NSMutableDictionary * gHistory;
     LoggerStream(1, @"%@ dealloc", self);
 }
 
-- (void)loadView
-{
 
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    
     self.backgroundColor = [UIColor blackColor];
     self.tintColor = [UIColor blackColor];
     
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
-    _activityIndicatorView.center = self.center;
+    _activityIndicatorView.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
     [self addSubview:_activityIndicatorView];
     
     CGFloat width = self.frame.size.width;
-    CGFloat height = self.frame.size.height;
+    //CGFloat height = self.frame.size.height;
     
 #ifdef DEBUG
     _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,40,width-40,40)];
@@ -238,35 +239,30 @@ static NSMutableDictionary * gHistory;
     [self addSubview:_messageLabel];
 #endif
     
-    CGFloat topH = 50;
-    CGFloat botH = 50;
-    
-    _progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(46, 1, 50, topH)];
-    _progressLabel.backgroundColor = [UIColor clearColor];
-    _progressLabel.opaque = NO;
-    _progressLabel.adjustsFontSizeToFitWidth = NO;
-    _progressLabel.textAlignment = NSTextAlignmentRight;
-    _progressLabel.textColor = [UIColor blackColor];
-    _progressLabel.text = @"";
-    _progressLabel.font = [UIFont systemFontOfSize:12];
-    
-    _leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(width-92, 1, 60, topH)];
-    _leftLabel.backgroundColor = [UIColor clearColor];
-    _leftLabel.opaque = NO;
-    _leftLabel.adjustsFontSizeToFitWidth = NO;
-    _leftLabel.textAlignment = NSTextAlignmentLeft;
-    _leftLabel.textColor = [UIColor blackColor];
-    _leftLabel.text = @"";
-    _leftLabel.font = [UIFont systemFontOfSize:12];
-    _leftLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    
     if (_decoder) {
         
         [self setupPresentView];
         
-    } else {
-        _leftLabel.hidden = YES;
     }
+    
+    _savedIdleTimer = [[UIApplication sharedApplication] isIdleTimerDisabled];
+    
+    [self showHUD: YES];
+    
+    if (_decoder) {
+        
+        [self restorePlay];
+        
+    } else {
+        
+        [_activityIndicatorView startAnimating];
+    }
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:[UIApplication sharedApplication]];
 }
 
 - (void) useMemoryWarning
@@ -298,29 +294,6 @@ static NSMutableDictionary * gHistory;
         [_decoder closeFile];
         [_decoder openFile:nil error:nil];
     }
-}
-
-- (void) didMoveToSuperview {
-    [super didMoveToSuperview];
-
-    _savedIdleTimer = [[UIApplication sharedApplication] isIdleTimerDisabled];
-    
-    [self showHUD: YES];
-    
-    if (_decoder) {
-        
-        [self restorePlay];
-        
-    } else {
-        
-        [_activityIndicatorView startAnimating];
-    }
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillResignActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:[UIApplication sharedApplication]];
 }
 
 - (void) applicationWillResignActive: (NSNotification *)notification
@@ -465,9 +438,6 @@ static NSMutableDictionary * gHistory;
         
         [self setupPresentView];
         
-        _progressLabel.hidden   = NO;
-        _leftLabel.hidden       = NO;
-        
         if (_activityIndicatorView.isAnimating) {
             
             [_activityIndicatorView stopAnimating];
@@ -528,7 +498,7 @@ static NSMutableDictionary * gHistory;
     
     if (_decoder.subtitleStreamsCount) {
         
-        CGSize size = self.bounds.size;
+        CGSize size = self.frame.size;
         
         _subtitlesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, size.height, size.width, 0)];
         _subtitlesLabel.numberOfLines = 0;
@@ -1020,14 +990,6 @@ static NSMutableDictionary * gHistory;
 {
     if (_disableUpdateHUD)
         return;
-    
-    const CGFloat duration = _decoder.duration;
-    const CGFloat position = _moviePosition -_decoder.startTime;
-
-    _progressLabel.text = formatTimeInterval(position, NO);
-    
-    if (_decoder.duration != MAXFLOAT)
-        _leftLabel.text = formatTimeInterval(duration - position, YES);
     
 #ifdef DEBUG
     const NSTimeInterval timeSinceStart = [NSDate timeIntervalSinceReferenceDate] - _debugStartTime;

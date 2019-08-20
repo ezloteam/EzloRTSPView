@@ -17,14 +17,31 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuZ-yK-a7S">
+                                <rect key="frame" x="0.0" y="88" width="414" height="233"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YuZ-yK-a7S" secondAttribute="height" multiplier="16:9" id="1bw-y4-dOn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YuZ-yK-a7S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6oA-FM-ANU"/>
+                            <constraint firstItem="YuZ-yK-a7S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CU5-Ux-bzk"/>
+                            <constraint firstItem="YuZ-yK-a7S" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="W45-iF-Dhx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="YMg-pe-HGw"/>
+                    <connections>
+                        <outlet property="containerView" destination="YuZ-yK-a7S" id="KMd-tw-VYV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="977" y="722"/>
+            <point key="canvasLocation" x="976.81159420289862" y="721.875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1b4-jL-mS6">

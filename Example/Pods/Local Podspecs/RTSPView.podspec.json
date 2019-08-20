@@ -1,6 +1,6 @@
 {
   "name": "RTSPView",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "summary": "A short description of RTSPView.",
   "description": "RTSP View based on MobileVLCKit",
   "homepage": "https://github.com/MaxVitruk",
