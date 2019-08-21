@@ -17,28 +17,6 @@
 #import "KxMovieGLView.h"
 #import "KxLogger.h"
 
-////////////////////////////////////////////////////////////////////////////////
-
-static NSString * formatTimeInterval(CGFloat seconds, BOOL isLeft)
-{
-    seconds = MAX(0, seconds);
-    
-    NSInteger s = seconds;
-    NSInteger m = s / 60;
-    NSInteger h = m / 60;
-    
-    s = s % 60;
-    m = m % 60;
-    
-    NSMutableString *format = [(isLeft && seconds >= 0.5 ? @"-" : @"") mutableCopy];
-    if (h != 0) [format appendFormat:@"%ld:%0.2ld", (long)h, (long)m];
-    else        [format appendFormat:@"%ld", (long)m];
-    [format appendFormat:@":%0.2ld", (long)s];
-    
-    return format;
-}
-
-////////////////////////////////////////////////////////////////////////////////
 
 enum {
     
@@ -89,18 +67,10 @@ static NSMutableDictionary * gHistory;
     UIImageView         *_imageView;
     
     UIActivityIndicatorView *_activityIndicatorView;
-    UILabel             *_subtitlesLabel;
     
     UITapGestureRecognizer *_tapGestureRecognizer;
     UITapGestureRecognizer *_doubleTapGestureRecognizer;
     UIPanGestureRecognizer *_panGestureRecognizer;
-    
-#ifdef DEBUG
-    UILabel             *_messageLabel;
-    NSTimeInterval      _debugStartTime;
-    NSUInteger          _debugAudioStatus;
-    NSDate              *_debugAudioStatusTS;
-#endif
     
     CGFloat             _bufferedDuration;
     CGFloat             _minBufferedDuration;
@@ -119,62 +89,58 @@ static NSMutableDictionary * gHistory;
 
 @implementation EzloRTSPView
 
-+ (void)initialize
-{
-    if (!gHistory)
-        gHistory = [NSMutableDictionary dictionary];
-}
 
-- (BOOL)prefersStatusBarHidden { return YES; }
-
-+ (EzloRTSPView*) initWithContentPath: (NSString *) path
-                           parameters: (NSDictionary *) parameters
-                               frame : (CGRect) frame
+- (id)initWithFrame:(CGRect) frame
 {
-    id<KxAudioManager> audioManager = [KxAudioManager audioManager];
-    [audioManager activateAudioSession];
-    return [[EzloRTSPView alloc] initWithContentPath: path parameters: parameters frame: frame];
-}
-
-- (id) initWithContentPath: (NSString *) path
-                parameters: (NSDictionary *) parameters
-                    frame : (CGRect) frame
-{
-    NSAssert(path.length > 0, @"empty path");
-    self = [super initWithFrame: frame];
+    self = [super initWithFrame:frame];
     if (self) {
-        
-        _moviePosition = 0;
-        //        self.wantsFullScreenLayout = YES;
-        
-        _parameters = parameters;
-        
-        __weak EzloRTSPView *weakSelf = self;
-        
-        KxMovieDecoder *decoder = [[KxMovieDecoder alloc] init];
-        
-        decoder.interruptCallback = ^BOOL(){
-            
-            __strong EzloRTSPView *strongSelf = weakSelf;
-            return strongSelf ? [strongSelf interruptDecoder] : YES;
-        };
-        
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            
-            NSError *error = nil;
-            [decoder openFile:path error:&error];
-            
-            __strong EzloRTSPView *strongSelf = weakSelf;
-            if (strongSelf) {
-                
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    
-                    [strongSelf setMovieDecoder:decoder withError:error];
-                });
-            }
-        });
+        [self setup];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *) aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void) startStream: (NSString *) path {
+    NSAssert(path.length > 0, @"empty path");
+    
+    id<KxAudioManager> audioManager = [KxAudioManager audioManager];
+    [audioManager activateAudioSession];
+    
+    _moviePosition = 0;
+    //        self.wantsFullScreenLayout = YES;
+    
+    __weak EzloRTSPView *weakSelf = self;
+    
+    KxMovieDecoder *decoder = [[KxMovieDecoder alloc] init];
+    
+    decoder.interruptCallback = ^BOOL(){
+        
+        __strong EzloRTSPView *strongSelf = weakSelf;
+        return strongSelf ? [strongSelf interruptDecoder] : YES;
+    };
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        NSError *error = nil;
+        [decoder openFile:path error:&error];
+        
+        __strong EzloRTSPView *strongSelf = weakSelf;
+        if (strongSelf) {
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                
+                [strongSelf setMovieDecoder:decoder withError:error];
+            });
+        }
+    });
 }
 
 - (void) dealloc
@@ -211,9 +177,11 @@ static NSMutableDictionary * gHistory;
 }
 
 
-- (void)didMoveToSuperview
+- (void)setup
 {
-    [super didMoveToSuperview];
+    
+    if (!gHistory)
+        gHistory = [NSMutableDictionary dictionary];
     
     self.backgroundColor = [UIColor blackColor];
     self.tintColor = [UIColor blackColor];
@@ -223,21 +191,6 @@ static NSMutableDictionary * gHistory;
     _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
     [self addSubview:_activityIndicatorView];
-    
-    CGFloat width = self.frame.size.width;
-    //CGFloat height = self.frame.size.height;
-    
-#ifdef DEBUG
-    _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,40,width-40,40)];
-    _messageLabel.backgroundColor = [UIColor clearColor];
-    _messageLabel.textColor = [UIColor redColor];
-    _messageLabel.hidden = YES;
-    _messageLabel.font = [UIFont systemFontOfSize:14];
-    _messageLabel.numberOfLines = 2;
-    _messageLabel.textAlignment = NSTextAlignmentCenter;
-    _messageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [self addSubview:_messageLabel];
-#endif
     
     if (_decoder) {
         
@@ -325,10 +278,6 @@ static NSMutableDictionary * gHistory;
     _disableUpdateHUD = NO;
     _tickCorrectionTime = 0;
     _tickCounter = 0;
-    
-#ifdef DEBUG
-    _debugStartTime = -1;
-#endif
     
     [self asyncDecodeFrames];
     
@@ -495,24 +444,6 @@ static NSMutableDictionary * gHistory;
     }
     
     self.backgroundColor = [UIColor clearColor];
-    
-    if (_decoder.subtitleStreamsCount) {
-        
-        CGSize size = self.frame.size;
-        
-        _subtitlesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, size.height, size.width, 0)];
-        _subtitlesLabel.numberOfLines = 0;
-        _subtitlesLabel.backgroundColor = [UIColor clearColor];
-        _subtitlesLabel.opaque = NO;
-        _subtitlesLabel.adjustsFontSizeToFitWidth = NO;
-        _subtitlesLabel.textAlignment = NSTextAlignmentCenter;
-        _subtitlesLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _subtitlesLabel.textColor = [UIColor whiteColor];
-        _subtitlesLabel.font = [UIFont systemFontOfSize:16];
-        _subtitlesLabel.hidden = YES;
-        
-        [self addSubview:_subtitlesLabel];
-    }
 }
 
 - (UIView *) frameView
@@ -524,8 +455,6 @@ static NSMutableDictionary * gHistory;
                      numFrames: (UInt32) numFrames
                    numChannels: (UInt32) numChannels
 {
-    //fillSignalF(outData,numFrames,numChannels);
-    //return;
     
     if (_buffered) {
         memset(outData, 0, numFrames * numChannels * sizeof(float));
@@ -556,11 +485,7 @@ static NSMutableDictionary * gHistory;
                             if (delta < -0.1) {
                                 
                                 memset(outData, 0, numFrames * numChannels * sizeof(float));
-#ifdef DEBUG
-                                LoggerStream(0, @"desync audio (outrun) wait %.4f %.4f", _moviePosition, frame.position);
-                                _debugAudioStatus = 1;
-                                _debugAudioStatusTS = [NSDate date];
-#endif
+                                
                                 break; // silence and exit
                             }
                             
@@ -568,11 +493,6 @@ static NSMutableDictionary * gHistory;
                             
                             if (delta > 0.1 && count > 1) {
                                 
-#ifdef DEBUG
-                                LoggerStream(0, @"desync audio (lags) skip %.4f %.4f", _moviePosition, frame.position);
-                                _debugAudioStatus = 2;
-                                _debugAudioStatusTS = [NSDate date];
-#endif
                                 continue;
                             }
                             
@@ -610,10 +530,7 @@ static NSMutableDictionary * gHistory;
                 
                 memset(outData, 0, numFrames * numChannels * sizeof(float));
                 //LoggerStream(1, @"silence audio");
-#ifdef DEBUG
-                _debugAudioStatus = 3;
-                _debugAudioStatusTS = [NSDate date];
-#endif
+                
                 break;
             }
         }
@@ -783,7 +700,6 @@ static NSMutableDictionary * gHistory;
             if (_decoder.isEOF) {
                 
                 [self pause];
-                [self updateHUD];
                 return;
             }
             
@@ -806,10 +722,6 @@ static NSMutableDictionary * gHistory;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self tick];
         });
-    }
-    
-    if ((_tickCounter++ % 3) == 0) {
-        [self updateHUD];
     }
 }
 
@@ -876,14 +788,6 @@ static NSMutableDictionary * gHistory;
         }
     }
     
-    if (_decoder.validSubtitles)
-        [self presentSubtitles];
-    
-#ifdef DEBUG
-    if (self.playing && _debugStartTime < 0)
-        _debugStartTime = [NSDate timeIntervalSinceReferenceDate] - _moviePosition;
-#endif
-    
     return interval;
 }
 
@@ -902,48 +806,6 @@ static NSMutableDictionary * gHistory;
     _moviePosition = frame.position;
     
     return frame.duration;
-}
-
-- (void) presentSubtitles
-{
-    NSArray *actual, *outdated;
-    
-    if ([self subtitleForPosition:_moviePosition
-                           actual:&actual
-                         outdated:&outdated]){
-        
-        if (outdated.count) {
-            @synchronized(_subtitles) {
-                [_subtitles removeObjectsInArray:outdated];
-            }
-        }
-        
-        if (actual.count) {
-            
-            NSMutableString *ms = [NSMutableString string];
-            for (KxSubtitleFrame *subtitle in actual.reverseObjectEnumerator) {
-                if (ms.length) [ms appendString:@"\n"];
-                [ms appendString:subtitle.text];
-            }
-            
-            if (![_subtitlesLabel.text isEqualToString:ms]) {
-                
-                CGSize viewSize = self.bounds.size;
-                CGSize size = [ms sizeWithFont:_subtitlesLabel.font
-                             constrainedToSize:CGSizeMake(viewSize.width, viewSize.height * 0.5)
-                                 lineBreakMode:NSLineBreakByTruncatingTail];
-                _subtitlesLabel.text = ms;
-                _subtitlesLabel.frame = CGRectMake(0, viewSize.height - size.height - 10,
-                                                   viewSize.width, size.height);
-                _subtitlesLabel.hidden = NO;
-            }
-            
-        } else {
-            
-            _subtitlesLabel.text = nil;
-            _subtitlesLabel.hidden = YES;
-        }
-    }
 }
 
 - (BOOL) subtitleForPosition: (CGFloat) position
@@ -984,42 +846,6 @@ static NSMutableDictionary * gHistory;
     if (pOutdated) *pOutdated = outdated;
     
     return actual.count || outdated.count;
-}
-
-- (void) updateHUD
-{
-    if (_disableUpdateHUD)
-        return;
-    
-#ifdef DEBUG
-    const NSTimeInterval timeSinceStart = [NSDate timeIntervalSinceReferenceDate] - _debugStartTime;
-    NSString *subinfo = _decoder.validSubtitles ? [NSString stringWithFormat: @" %lu",(unsigned long)_subtitles.count] : @"";
-    
-    NSString *audioStatus;
-    
-    if (_debugAudioStatus) {
-        
-        if (NSOrderedAscending == [_debugAudioStatusTS compare: [NSDate dateWithTimeIntervalSinceNow:-0.5]]) {
-            _debugAudioStatus = 0;
-        }
-    }
-    
-    if      (_debugAudioStatus == 1) audioStatus = @"\n(audio outrun)";
-    else if (_debugAudioStatus == 2) audioStatus = @"\n(audio lags)";
-    else if (_debugAudioStatus == 3) audioStatus = @"\n(audio silence)";
-    else audioStatus = @"";
-    
-    _messageLabel.text = [NSString stringWithFormat:@"%lu %lu%@ %c - %@ %@ %@\n%@",
-                          (unsigned long)_videoFrames.count,
-                          (unsigned long)_audioFrames.count,
-                          subinfo,
-                          self.decoding ? 'D' : ' ',
-                          formatTimeInterval(timeSinceStart, NO),
-                          //timeSinceStart > _moviePosition + 0.5 ? @" (lags)" : @"",
-                          _decoder.isEOF ? @"- END" : @"",
-                          audioStatus,
-                          _buffered ? [NSString stringWithFormat:@"buffering %.1f%%", _bufferedDuration / _minBufferedDuration * 100] : @""];
-#endif
 }
 
 - (void) showHUD: (BOOL) show
@@ -1090,7 +916,6 @@ static NSMutableDictionary * gHistory;
                     [strongSelf enableUpdateHUD];
                     [strongSelf setMoviePositionFromDecoder];
                     [strongSelf presentFrame];
-                    [strongSelf updateHUD];
                 }
             });
         }

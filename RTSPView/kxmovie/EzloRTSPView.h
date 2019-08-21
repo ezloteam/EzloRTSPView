@@ -11,12 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EzloRTSPView : UIView
-+ (EzloRTSPView*) initWithContentPath:  (NSString *)        path
-                           parameters:     (NSDictionary *)    parameters
-                               frame :         (CGRect)            frame;
 
 @property (readonly) BOOL playing;
 
+- (void) startStream:  (NSString *) path;
 - (void) play;
 - (void) pause;
 - (void) useMemoryWarning;
