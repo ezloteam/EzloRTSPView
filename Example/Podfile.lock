@@ -2,7 +2,7 @@ PODS:
   - FFmpeg (2.8.3):
     - FFmpeg/precompiled (= 2.8.3)
   - FFmpeg/precompiled (2.8.3)
-  - RTSPView (0.1.6):
+  - RTSPView (0.1.7):
     - FFmpeg
 
 DEPENDENCIES:
@@ -18,12 +18,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   RTSPView:
-    :commit: d68889a489202c31bab9d390f904c80ea2f11801
+    :commit: baac73ac5d8e62928d506cf83dd53200cbc25bc3
     :git: https://github.com/ezlo-maxv/RTSPView.git
 
 SPEC CHECKSUMS:
   FFmpeg: f1428c3b60b5f9e349fcd5d7878705cd7f9a26f6
-  RTSPView: 2bfd82f4d40960837910f39e8d8c1a4147d978d4
+  RTSPView: d9122a6db40250938d9b4eecc790a02596f85009
 
 PODFILE CHECKSUM: cf1656c6ab05f150a707c6024cc9add470088c3f
 

@@ -30,8 +30,6 @@
 		920E7B53230C065A00E57B2F /* EzloRTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 920E7B51230C065A00E57B2F /* EzloRTSPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		920E7B54230C065A00E57B2F /* EzloRTSPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E7B52230C065A00E57B2F /* EzloRTSPView.m */; };
 		92830F55230AE42000313740 /* RTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92830F53230AE42000313740 /* RTSPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		92830F5F230AE5A800313740 /* NRTSPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92830F5D230AE5A800313740 /* NRTSPView.h */; };
-		92830F60230AE5A800313740 /* NRTSPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92830F5E230AE5A800313740 /* NRTSPView.m */; };
 		DEBF291FDD73D9FB955E683A /* Pods_RTSPView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5798DD58D9A513D1F21369 /* Pods_RTSPView.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +60,6 @@
 		92830F50230AE42000313740 /* RTSPView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RTSPView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92830F53230AE42000313740 /* RTSPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSPView.h; sourceTree = "<group>"; };
 		92830F54230AE42000313740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92830F5D230AE5A800313740 /* NRTSPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRTSPView.h; sourceTree = "<group>"; };
-		92830F5E230AE5A800313740 /* NRTSPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRTSPView.m; sourceTree = "<group>"; };
 		BF5798DD58D9A513D1F21369 /* Pods_RTSPView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTSPView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAAD2EC8EF06658E51A73FC /* Pods-RTSPView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTSPView.release.xcconfig"; path = "Target Support Files/Pods-RTSPView/Pods-RTSPView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,8 +155,6 @@
 				920E7B38230BEF6900E57B2F /* kxmovie */,
 				92830F53230AE42000313740 /* RTSPView.h */,
 				92830F54230AE42000313740 /* Info.plist */,
-				92830F5D230AE5A800313740 /* NRTSPView.h */,
-				92830F5E230AE5A800313740 /* NRTSPView.m */,
 			);
 			path = RTSPView;
 			sourceTree = "<group>";
@@ -178,7 +172,6 @@
 				92830F55230AE42000313740 /* RTSPView.h in Headers */,
 				920E7B4A230BEF6900E57B2F /* kxmovie-Prefix.pch in Headers */,
 				920E7B4B230BEF6900E57B2F /* KxMovieViewController.h in Headers */,
-				92830F5F230AE5A800313740 /* NRTSPView.h in Headers */,
 				920E7B4E230BEF6900E57B2F /* KxAudioManager.h in Headers */,
 				920E7B47230BEF6900E57B2F /* KxLogger.h in Headers */,
 			);
@@ -282,7 +275,6 @@
 			files = (
 				920E7B4D230BEF6900E57B2F /* KxMovieDecoder.m in Sources */,
 				920E7B44230BEF6900E57B2F /* KxMovieViewController.m in Sources */,
-				92830F60230AE5A800313740 /* NRTSPView.m in Sources */,
 				920E7B54230C065A00E57B2F /* EzloRTSPView.m in Sources */,
 				920E7B46230BEF6900E57B2F /* KxMovieGLView.m in Sources */,
 				920E7B49230BEF6900E57B2F /* KxAudioManager.m in Sources */,
